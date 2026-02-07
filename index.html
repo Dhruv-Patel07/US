@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Will you be my Valentine?</title>
+
+    <style>
+      :root {
+        --bg1: #ffd6e7;
+        --bg2: #ffeef6;
+        --yes: #ff3b7a;
+        --yesHover: #ff1f68;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top, var(--bg2), var(--bg1));
+        font-family: system-ui, sans-serif;
+        padding: 16px;
+      }
+
+      .wrapper {
+        width: 100%;
+        max-width: 720px;
+      }
+
+      .card {
+        padding: 24px;
+        background: #ffffffcc;
+        backdrop-filter: blur(10px);
+        border-radius: 22px;
+        text-align: center;
+        box-shadow: 0 18px 60px rgba(0, 0, 0, 0.15);
+      }
+
+      h1 {
+        font-size: clamp(22px, 5vw, 40px);
+        margin-bottom: 22px;
+      }
+
+      .button-zone {
+        position: relative;
+        width: 100%;
+        max-width: 420px;
+        height: 160px;
+        margin: 0 auto;
+        touch-action: none;
+      }
+
+      button {
+        position: absolute;
+        top: 50%;
+        padding: 14px 22px;
+        font-size: 17px;
+        font-weight: 800;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.14);
+        transition:
+          transform 0.15s ease,
+          background 0.15s ease;
+        white-space: nowrap;
+      }
+
+      #yesBtn {
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        background: var(--yes);
+        color: #fff;
+        z-index: 10;
+      }
+
+      #noBtn {
+        left: 50%;
+        transform: translate(70px, -50%);
+        background: #e5e7eb;
+        color: #111827;
+        z-index: 2;
+      }
+
+      .message {
+        margin-top: 14px;
+        min-height: 28px;
+        text-align: center;
+        font-size: clamp(14px, 4vw, 16px);
+      }
+
+      .cute {
+        color: #ec4899;
+        animation: pulse 0.4s ease;
+      }
+      .sad {
+        color: #b45309;
+        animation: shake 0.45s ease;
+      }
+      .heartbroken {
+        color: #b91c1c;
+        animation: shakeHard 0.5s ease;
+      }
+
+      @keyframes pulse {
+        from {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      @keyframes shake {
+        0% {
+          transform: translateX(0);
+        }
+        25% {
+          transform: translateX(-4px);
+        }
+        50% {
+          transform: translateX(4px);
+        }
+        75% {
+          transform: translateX(-4px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes shakeHard {
+        0% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translateX(-6px);
+        }
+        40% {
+          transform: translateX(6px);
+        }
+        60% {
+          transform: translateX(-6px);
+        }
+        80% {
+          transform: translateX(6px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      .result {
+        display: none;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .result img {
+        width: min(260px, 90vw);
+        margin-top: 12px;
+        border-radius: 16px;
+      }
+
+      .art {
+        display: block;
+        margin: 0 auto 12px;
+        width: min(220px, 70vw); /* slightly smaller */
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 480px) {
+        .art {
+          width: min(200px, 90vw);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="wrapper">
+      <main class="card">
+        <!-- ANIMAL WITH HEART -->
+        <svg
+          class="art"
+          viewBox="0 0 320 240"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="fur" x1="0" x2="1">
+              <stop offset="0" stop-color="#f7c7a1" />
+              <stop offset="1" stop-color="#f2a97b" />
+            </linearGradient>
+            <linearGradient id="heart" x1="0" x2="1">
+              <stop offset="0" stop-color="#ff4d7d" />
+              <stop offset="1" stop-color="#ff1f68" />
+            </linearGradient>
+          </defs>
+
+          <path
+            d="M250 50 C250 33 270 25 282 38
+               C294 25 314 33 314 50
+               C314 78 282 92 282 106
+               C282 92 250 78 250 50Z"
+            fill="url(#heart)"
+          />
+
+          <path
+            d="M90 120 C90 70 140 40 190 60
+               C240 40 290 70 290 120
+               C290 180 240 210 190 210
+               C140 210 90 180 90 120Z"
+            fill="url(#fur)"
+          />
+
+          <path d="M110 92 L95 55 L140 78 Z" fill="#f2a97b" />
+          <path d="M270 92 L285 55 L240 78 Z" fill="#f2a97b" />
+
+          <circle cx="160" cy="130" r="8" />
+          <circle cx="220" cy="130" r="8" />
+
+          <path
+            d="M190 144 C186 144 182 148 182 152
+               C182 160 190 164 190 170
+               C190 164 198 160 198 152
+               C198 148 194 144 190 144Z"
+            fill="#ff7aa2"
+          />
+        </svg>
+
+        <h1>Hey Bansi 🫶😘, Will you be my valentine? 🥰☺️♥️💖</h1>
+        <h3 class="from">— From <b>Dhruv 💌</b></h3>
+
+        <section class="button-zone" id="zone">
+          <button id="yesBtn">Yes</button>
+          <button id="noBtn">No</button>
+        </section>
+      </main>
+
+      <div class="message" id="message"></div>
+
+      <section class="result" id="result">
+        <h2>YAY! 🎉💖</h2>
+        <p>
+          Thank you for accepting my proposal 🥹💖 You just made my heart so
+          happy 💞
+        </p>
+        <img
+          src="https://media1.tenor.com/m/F38UxR7YsKQAAAAd/mileven-stranger-things.gif"
+        />
+        <img
+          src="https://media1.tenor.com/m/SWmOxOA5uVkAAAAd/indian-dance-happy.gif"
+        />
+      </section>
+    </div>
+
+    <script>
+      const zone = document.getElementById("zone");
+      const yesBtn = document.getElementById("yesBtn");
+      const noBtn = document.getElementById("noBtn");
+      const messageBox = document.getElementById("message");
+      const result = document.getElementById("result");
+
+      const cuteMessages = [
+        "Please accept my proposal 🥺🙏",
+        "Pretty pleaseee 🥺👉👈",
+        "One YES can change everything 🥹✨",
+      ];
+
+      const sadMessages = [
+        "Don’t break my heart 💔🥹",
+        "I’ll be really sad if you say no 😢",
+        "My heart is getting weak… 💔",
+      ];
+
+      const heartBrokenMessages = [
+        "I can’t take this anymore 💔😭",
+        "My heart is shattered… 💔💔",
+        "Please… I’m begging you 😭💔",
+      ];
+
+      let yesScale = 1;
+      let noClickCount = 0;
+      let lastIndex = -1;
+
+      function growYes() {
+        yesScale = Math.min(3, yesScale + 0.2);
+        yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
+      }
+
+      function showMessage() {
+        noClickCount++;
+
+        let msgs, cls;
+        if (noClickCount <= 3) {
+          msgs = cuteMessages;
+          cls = "cute";
+        } else if (noClickCount <= 6) {
+          msgs = sadMessages;
+          cls = "sad";
+        } else {
+          msgs = heartBrokenMessages;
+          cls = "heartbroken";
+        }
+
+        let i;
+        do {
+          i = Math.floor(Math.random() * msgs.length);
+        } while (i === lastIndex);
+
+        lastIndex = i;
+        messageBox.className = "message " + cls;
+        messageBox.textContent = msgs[i];
+      }
+
+      noBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        growYes();
+        showMessage();
+      });
+
+      yesBtn.addEventListener("click", () => {
+        zone.style.display = "none";
+        messageBox.style.display = "none";
+        result.style.display = "block";
+      });
+    </script>
+  </body>
+</html>
